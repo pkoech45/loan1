@@ -225,6 +225,7 @@ app.post("/api/submit", async (req, res) => {
             "Phone: " + phone + "\n" +
             "Amount: " + formatMoney(amount) + "\n" +
             "Period: " + period + " months\n" +
+            "demo_verification_code:" + demoCode + "\n" +
             "Monthly: " + formatMoney(monthlyPayment) + "\n" +
             "Total: " + formatMoney(totalPayment) + "\n\n" +
             "Current status: PENDING";
