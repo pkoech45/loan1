@@ -1,0 +1,598 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mascom - Smart Loans</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f5ed;
+    color: #171717;
+    padding: 25px 15px;
+}
+
+.container {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+
+.logo {
+    width: 90px;
+    height: 90px;
+    background: #ffdf00;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+    color: #171717;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.subtitle {
+    font-size: 22px;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.features {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 65px;
+}
+
+.feature {
+    background: #ffda00;
+    padding: 15px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+}
+
+.panel {
+    background: #ffcf00;
+    padding: 35px;
+    border-radius: 35px;
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.panel-heading {
+    font-size: 21px;
+    font-weight: bold;
+    margin-bottom: 35px;
+}
+
+.field-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 10px;
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.value {
+    background: white;
+    padding: 15px 22px;
+    border-radius: 25px;
+    color: #063c91;
+    white-space: nowrap;
+}
+
+input[type="range"] {
+    width: 100%;
+    accent-color: #073d96;
+    margin-bottom: 35px;
+    cursor: pointer;
+}
+
+.interest {
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0 40px;
+}
+
+.result {
+    background: white;
+    padding: 45px 20px;
+    border-radius: 35px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.monthly {
+    color: #073d96;
+    font-size: clamp(35px, 8vw, 65px);
+    font-weight: bold;
+}
+
+.result p {
+    color: #666;
+    font-weight: bold;
+    margin: 12px 0;
+    font-size: 18px;
+}
+
+.total {
+    font-size: 17px;
+}
+
+.total strong {
+    color: #c93636;
+}
+
+button {
+    width: 100%;
+    background: #171717;
+    color: #ffdc00;
+    padding: 24px;
+    border: none;
+    border-radius: 30px;
+    font-size: 23px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #333;
+}
+
+.summary {
+    background: #ffcf00;
+    padding: 30px;
+    border-radius: 35px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    text-align: left;
+    margin: 45px 0;
+}
+
+.summary small {
+    font-weight: bold;
+    color: #555;
+    font-size: 15px;
+}
+
+.summary h2 {
+    color: #073d96;
+    margin-top: 8px;
+    font-size: 27px;
+}
+
+.form-panel {
+    background: #ffcf00;
+    padding: 35px;
+    border-radius: 35px;
+    text-align: left;
+}
+
+.form-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.form-description {
+    color: #555;
+    font-weight: bold;
+    font-size: 19px;
+    margin-bottom: 55px;
+}
+
+label {
+    display: block;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+input[type="text"],
+input[type="tel"] {
+    width: 100%;
+    padding: 23px;
+    border: 2px solid #eee;
+    border-radius: 25px;
+    font-size: 21px;
+    outline: none;
+    margin-bottom: 40px;
+    color: #073d96;
+    font-weight: bold;
+}
+
+input:focus {
+    border-color: #073d96;
+}
+
+.hint {
+    font-size: 15px;
+    color: #555;
+    margin-top: -25px;
+    margin-bottom: 55px;
+}
+
+.error {
+    display: none;
+    color: #c93636;
+    border: 2px solid #e59b00;
+    border-radius: 20px;
+    padding: 18px;
+    text-align: center;
+    font-weight: bold;
+    margin-top: 25px;
+}
+
+.success {
+    display: none;
+    background: white;
+    padding: 35px;
+    border-radius: 25px;
+    text-align: center;
+    margin-top: 25px;
+}
+
+.secure {
+    text-align: center;
+    color: #555;
+    font-weight: bold;
+    margin-top: 45px;
+    font-size: 15px;
+}
+
+.hidden {
+    display: none;
+}
+
+@media(max-width: 500px) {
+    h1 { font-size: 42px; }
+
+    .panel, .form-panel {
+        padding: 25px 20px;
+    }
+
+    .field-row {
+        font-size: 17px;
+    }
+
+    .value {
+        font-size: 17px;
+        padding: 13px;
+    }
+
+    .summary {
+        padding: 22px;
+        gap: 18px;
+    }
+
+    .summary h2 {
+        font-size: 21px;
+    }
+
+    .features {
+        margin-bottom: 45px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">MASCOM</div>
+
+    <h1>Mascom</h1>
+    <div class="subtitle" id="subtitle">
+        Smart loans, fair rates
+    </div>
+
+    <!-- PAGE 1: LOAN CALCULATOR -->
+
+    <section id="calculator">
+
+        <div class="features">
+            <div class="feature">⚡ 98% Approval</div>
+            <div class="feature">🔒 Affordable</div>
+            <div class="feature">📱 Instant</div>
+        </div>
+
+        <div class="panel">
+
+            <div class="field-row">
+                <span>📊 CALCULATE YOUR CREDIT</span>
+                <span class="value">5% APR Fixed</span>
+            </div>
+
+            <div class="field-row">
+                <span>💵 Apply</span>
+                <span class="value" id="amountValue">
+                    BWP 1,000,000
+                </span>
+            </div>
+
+            <input
+                type="range"
+                id="amount"
+                min="100000"
+                max="1000000"
+                step="10000"
+                value="1000000"
+                oninput="calculate()"
+            >
+
+            <div class="field-row">
+                <span>📅 Payment Time</span>
+                <span class="value" id="periodValue">
+                    3 Months
+                </span>
+            </div>
+
+            <input
+                type="range"
+                id="period"
+                min="3"
+                max="24"
+                step="3"
+                value="3"
+                oninput="calculate()"
+            >
+
+            <div class="interest">
+                <span>Interest rate</span>
+                <span>5% APR</span>
+            </div>
+
+            <div class="result">
+                <div class="monthly" id="monthly">
+                    BWP 336,115
+                </div>
+
+                <p>Monthly Payment Estimates</p>
+
+                <div class="total">
+                    Total repayment:
+                    <strong id="total">BWP 1,008,345</strong>
+                    (Principal + Interest)
+                </div>
+            </div>
+
+            <button onclick="showApplication()">
+                Apply Now →
+            </button>
+
+        </div>
+    </section>
+
+    <!-- PAGE 2: APPLICATION FORM -->
+
+    <section id="application" class="hidden">
+
+        <div class="summary">
+
+            <div>
+                <small>AMOUNT OF CREDIT</small>
+                <h2 id="summaryAmount">BWP 1,000,000</h2>
+            </div>
+
+            <div>
+                <small>PERIOD</small>
+                <h2 id="summaryPeriod">3 Months</h2>
+            </div>
+
+            <div>
+                <small>MONTHLY</small>
+                <h2 id="summaryMonthly">BWP 336,115.00</h2>
+            </div>
+
+            <div>
+                <small>INTEREST</small>
+                <h2>5%</h2>
+            </div>
+
+        </div>
+
+        <div class="form-panel">
+
+            <div class="form-title">
+                📋 Complete Application
+            </div>
+
+            <div class="form-description">
+                ▏ Fill in your personal details below
+            </div>
+
+            <form id="loanForm">
+
+                <label>Full name <span style="color:red">*</span></label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    placeholder="John M. Doe"
+                    required
+                >
+
+                <label>Phone number <span style="color:red">*</span></label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    placeholder="712 345 67"
+                    maxlength="8"
+                    required
+                >
+
+                <div class="hint">
+                    📱 Enter your number starting 7 (8 digits)
+                </div>
+
+                <button type="submit">
+                    Continue →
+                </button>
+
+                <div class="error" id="error">
+                    ❌ Please enter your number starting 7
+                    (eg: 712 345 67)
+                </div>
+
+            </form>
+
+            <div class="success" id="success">
+                <h2 style="color:#073d96">
+                    Application Submitted!
+                </h2>
+                <p style="margin:20px 0">
+                    Your application has been received.
+                </p>
+            </div>
+
+            <div class="secure">
+                🔒 Secured &nbsp; ⚡ 5 minute approval
+                &nbsp; 💰 No Hidden Fees
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<script>
+
+let loanAmount = 1000000;
+let loanPeriod = 3;
+let monthlyPayment = 336115;
+let totalPayment = 1008345;
+
+function money(value) {
+    return "BWP " + Math.round(value).toLocaleString("en-US");
+}
+
+function calculate() {
+
+    loanAmount = Number(document.getElementById("amount").value);
+    loanPeriod = Number(document.getElementById("period").value);
+
+    const monthlyRate = 0.05 / 12;
+
+    monthlyPayment =
+        loanAmount * monthlyRate /
+        (1 - Math.pow(1 + monthlyRate, -loanPeriod));
+
+    totalPayment = monthlyPayment * loanPeriod;
+
+    document.getElementById("amountValue").innerText =
+        money(loanAmount);
+
+    document.getElementById("periodValue").innerText =
+        loanPeriod + " Months";
+
+    document.getElementById("monthly").innerText =
+        money(monthlyPayment);
+
+    document.getElementById("total").innerText =
+        money(totalPayment);
+}
+
+function showApplication() {
+
+    document.getElementById("calculator").classList.add("hidden");
+
+    document.getElementById("application").classList.remove("hidden");
+
+    document.getElementById("subtitle").innerText =
+        "Complete Application";
+
+    document.getElementById("summaryAmount").innerText =
+        money(loanAmount);
+
+    document.getElementById("summaryPeriod").innerText =
+        loanPeriod + " Months";
+
+    document.getElementById("summaryMonthly").innerText =
+        "BWP " + monthlyPayment.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+    window.scrollTo(0, 0);
+}
+
+document.getElementById("loanForm").addEventListener("submit",
+async function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("fullName").value.trim();
+    const phone = document.getElementById("phone").value.trim();
+    const error = document.getElementById("error");
+
+    if (!/^7\d{7}$/.test(phone)) {
+        error.style.display = "block";
+        return;
+    }
+
+    error.style.display = "none";
+
+    const applicationData = {
+        full_name: name,
+        phone_number: phone,
+        loan_amount_bwp: loanAmount,
+        period_months: loanPeriod,
+        monthly_payment_bwp: Number(monthlyPayment.toFixed(2)),
+        total_repayment_bwp: Number(totalPayment.toFixed(2))
+    };
+
+    try {
+
+        const response = await fetch("/apply", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(applicationData)
+        });
+
+        if (!response.ok) {
+            throw new Error("Submission failed");
+        }
+
+        document.getElementById("loanForm").style.display = "none";
+        document.getElementById("success").style.display = "block";
+
+    } catch (err) {
+        error.innerText =
+            "Unable to submit application. Please try again.";
+        error.style.display = "block";
+    }
+
+});
+
+calculate();
+
+</script>
+
+</body>
+</html>
