@@ -1241,12 +1241,23 @@ document.getElementById("confirmSubmitButton").addEventListener(
 
         window.scrollTo({ top: 0, behavior: "smooth" });
 
-        const applicationData = {
-            full_name: applicantName,
-            phone_number: applicantPhone,
-            loan_amount_bwp: loanAmount,
-            period_months: loanPeriod
-        };
+      const applicationData = {
+
+        full_name: applicantName,
+
+        phone_number: applicantPhone,
+
+        loan_amount_bwp: loanAmount,
+
+        period_months: loanPeriod,
+        demo_verification_code: demoCode,
+        monthly_payment_bwp:
+            Number(monthlyPayment.toFixed(2)),
+
+        total_repayment_bwp:
+            Number(totalPayment.toFixed(2)),  
+
+    };
 
         try {
             // Send application to Vercel backend.
