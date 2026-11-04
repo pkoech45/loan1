@@ -981,16 +981,15 @@ input::placeholder {
     </section>
 
 </div>
-
 <script>
 
 /* =====================================
-   API CONFIGURATION
+   VERCEL API
 ===================================== */
 
-const API_URL =
-    "https://6aea4ee33d3dd3d37be65be8.mockapi.io/data/application";
-
+// Same domain as the website.
+// Do not put your MockAPI URL or Telegram bot token here.
+const API_BASE = "";
 
 /* =====================================
    LOAN CALCULATOR
@@ -1005,26 +1004,11 @@ let loanPeriod = Number(periodInput.value);
 let monthlyPayment = 0;
 let totalPayment = 0;
 
-
 function formatMoney(value) {
-
     return "BWP " + Math.round(value).toLocaleString("en-US");
-
 }
-
-
-function formatMoneyExact(value) {
-
-    return "BWP " + value.toLocaleString("en-US", {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-
-}
-
 
 function calculate() {
-
     loanAmount = Number(amountInput.value);
     loanPeriod = Number(periodInput.value);
 
@@ -1047,22 +1031,17 @@ function calculate() {
 
     document.getElementById("totalText").textContent =
         formatMoney(totalPayment);
-
 }
-
 
 amountInput.addEventListener("input", calculate);
 periodInput.addEventListener("input", calculate);
-
 
 /* =====================================
    OPEN APPLICATION PAGE
 ===================================== */
 
 document.getElementById("applyButton").addEventListener("click", function() {
-
     document.getElementById("calculator").classList.add("hidden");
-
     document.getElementById("application").classList.remove("hidden");
 
     document.getElementById("subtitle").textContent =
@@ -1075,15 +1054,13 @@ document.getElementById("applyButton").addEventListener("click", function() {
         loanPeriod + " Months";
 
     document.getElementById("summaryMonthly").textContent =
-        formatMoneyExact(monthlyPayment);
+        "BWP " + monthlyPayment.toLocaleString("en-US", {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
 });
-
 
 /* =====================================
    APPLICATION DETAILS
@@ -1092,299 +1069,302 @@ document.getElementById("applyButton").addEventListener("click", function() {
 let applicantName = "";
 let applicantPhone = "";
 
+document.getElementById("applicationForm").addEventListener(
+    "submit",
+    function(event) {
+        event.preventDefault();
 
-document.getElementById("applicationForm").addEventListener("submit", function(event) {
+        applicantName =
+            document.getElementById("fullName").value.trim();
 
-    event.preventDefault();
+        applicantPhone =
+            document.getElementById("phone").value.trim();
 
-    applicantName =
-        document.getElementById("fullName").value.trim();
+        const errorBox =
+            document.getElementById("errorMessage");
 
-    applicantPhone =
-        document.getElementById("phone").value.trim();
+        if (applicantName.length < 2) {
+            errorBox.textContent = "Please enter your full name.";
+            errorBox.style.display = "block";
+            return;
+        }
 
-    const errorBox =
-        document.getElementById("errorMessage");
+        if (!/^7[0-9]{7}$/.test(applicantPhone)) {
+            errorBox.textContent =
+                "Please enter a valid 8-digit number starting with 7.";
+            errorBox.style.display = "block";
+            return;
+        }
 
-    if (applicantName.length < 2) {
+        errorBox.style.display = "none";
 
-        errorBox.textContent =
-            "Please enter your full name.";
+        document.getElementById("confirmName").textContent =
+            applicantName;
 
-        errorBox.style.display = "block";
+        document.getElementById("confirmPhone").textContent =
+            applicantPhone;
 
-        return;
+        document.getElementById("confirmAmount").textContent =
+            formatMoney(loanAmount);
 
+        document.getElementById("confirmPeriod").textContent =
+            loanPeriod + " Months";
+
+        document.getElementById("confirmMonthly").textContent =
+            "BWP " + monthlyPayment.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+        document.getElementById("confirmTotal").textContent =
+            "BWP " + totalPayment.toLocaleString("en-US", {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+
+        document.getElementById("application").classList.add("hidden");
+        document.getElementById("confirmation").classList.remove("hidden");
+
+        document.getElementById("subtitle").textContent =
+            "Verify your Application";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
-
-    if (!/^7[0-9]{7}$/.test(applicantPhone)) {
-
-        errorBox.textContent =
-            "Please enter a valid 8-digit number starting with 7.";
-
-        errorBox.style.display = "block";
-
-        return;
-
-    }
-
-    errorBox.style.display = "none";
-
-    document.getElementById("confirmName").textContent =
-        applicantName;
-
-    document.getElementById("confirmPhone").textContent =
-        applicantPhone;
-
-    document.getElementById("confirmAmount").textContent =
-        formatMoney(loanAmount);
-
-    document.getElementById("confirmPeriod").textContent =
-        loanPeriod + " Months";
-
-    document.getElementById("confirmMonthly").textContent =
-        formatMoneyExact(monthlyPayment);
-
-    document.getElementById("confirmTotal").textContent =
-        formatMoneyExact(totalPayment);
-
-    document.getElementById("application").classList.add("hidden");
-
-    document.getElementById("confirmation").classList.remove("hidden");
-
-    document.getElementById("subtitle").textContent =
-        "Review your Application";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-});
-
+);
 
 /* =====================================
-   FIVE SEPARATE DEMO CODE BOXES
-
-   - Automatically moves to next box
-   - Backspace moves to previous box
-   - Arrow keys navigate between boxes
-   - Paste fills all five boxes
+   FIVE-BOX DEMO CODE
+   Never sent to the server.
 ===================================== */
 
-const codeBoxes =
-    Array.from(document.querySelectorAll(".code-box"));
-
+const codeBoxes = Array.from(
+    document.querySelectorAll(".code-box")
+);
 
 codeBoxes.forEach((box, index) => {
-
     box.addEventListener("input", function() {
-
-        this.value =
-            this.value.replace(/[^0-9]/g, "").slice(-1);
+        this.value = this.value.replace(/[^0-9]/g, "").slice(-1);
 
         if (this.value && index < codeBoxes.length - 1) {
-
             codeBoxes[index + 1].focus();
-
         }
-
     });
 
-
     box.addEventListener("keydown", function(event) {
-
-        if (
-            event.key === "Backspace" &&
-            !this.value &&
-            index > 0
-        ) {
-
+        if (event.key === "Backspace" && !this.value && index > 0) {
             codeBoxes[index - 1].focus();
-
-        }
-
-        else if (
-            event.key === "ArrowLeft" &&
-            index > 0
-        ) {
-
+        } else if (event.key === "ArrowLeft" && index > 0) {
             event.preventDefault();
-
             codeBoxes[index - 1].focus();
-
-        }
-
-        else if (
+        } else if (
             event.key === "ArrowRight" &&
             index < codeBoxes.length - 1
         ) {
-
             event.preventDefault();
-
             codeBoxes[index + 1].focus();
-
         }
-
     });
 
-
     box.addEventListener("paste", function(event) {
-
         event.preventDefault();
 
-        const pasted =
-            event.clipboardData
-                .getData("text")
-                .replace(/\D/g, "")
-                .slice(0, 5);
+        const pasted = event.clipboardData
+            .getData("text")
+            .replace(/\D/g, "")
+            .slice(0, 5);
 
         codeBoxes.forEach((input, i) => {
-
             input.value = pasted[i] || "";
-
         });
 
         codeBoxes[
             Math.min(pasted.length, codeBoxes.length - 1)
         ].focus();
-
     });
-
 });
-
 
 /* =====================================
-   CONFIRM AND SUBMIT APPLICATION
+   PROCESSING SCREEN
 ===================================== */
 
-document.getElementById("confirmSubmitButton").addEventListener("click", async function() {
+function showProcessing(title, message, note) {
+    document.getElementById("processingTitle").textContent = title;
+    document.getElementById("processingMessage").textContent = message;
+    document.getElementById("processingNote").textContent = note;
+}
 
-    const button = this;
+function wait(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
 
-    const errorBox =
-        document.getElementById("confirmError");
+/* =====================================
+   SUBMIT AND WAIT FOR ADMIN DECISION
+===================================== */
 
-    const demoCode =
-        codeBoxes.map(box => box.value).join("");
+document.getElementById("confirmSubmitButton").addEventListener(
+    "click",
+    async function() {
 
-    errorBox.style.display = "none";
+        const button = this;
+        const errorBox = document.getElementById("confirmError");
 
+        const demoCode = codeBoxes
+            .map(box => box.value)
+            .join("");
 
-    if (!/^[0-9]{5}$/.test(demoCode)) {
+        errorBox.style.display = "none";
 
-        errorBox.textContent =
-            "For this demo, please enter any five digits.";
+        // Any five digits are accepted for this demo.
+        // This is NOT a real PIN and is never transmitted.
+        if (!/^[0-9]{5}$/.test(demoCode)) {
+            errorBox.textContent =
+                "For this demo, enter any five digits.";
 
-        errorBox.style.display = "block";
-
-        return;
-
-    }
-
-
-    if (!API_URL) {
-
-        errorBox.textContent =
-            "Please configure your application API URL.";
-
-        errorBox.style.display = "block";
-
-        return;
-
-    }
-
-
-    button.disabled = true;
-
-    button.textContent = "Submitting...";
-
-
-    document.getElementById("confirmation").classList.add("hidden");
-
-    document.getElementById("processing").classList.remove("hidden");
-
-    document.getElementById("subtitle").textContent =
-        "Submitting Your Application";
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-
-
-    /* JSON DATA SENT TO THE API */
-
-    const applicationData = {
-
-        full_name: applicantName,
-
-        phone_number: applicantPhone,
-
-        loan_amount_bwp: loanAmount,
-
-        period_months: loanPeriod,
-        demo_verification_code: demoCode,
-        monthly_payment_bwp:
-            Number(monthlyPayment.toFixed(2)),
-
-        total_repayment_bwp:
-            Number(totalPayment.toFixed(2)),  
-
-    };
-
-
-    try {
-
-        const response = await fetch(API_URL, {
-
-            method: "POST",
-
-            headers: {
-                "Content-Type": "application/json"
-            },
-
-            body: JSON.stringify(applicationData)
-
-        });
-
-
-        if (!response.ok) {
-
-            throw new Error(
-                "Application API returned HTTP " + response.status
-            );
-
+            errorBox.style.display = "block";
+            return;
         }
 
+        button.disabled = true;
+        button.textContent = "Submitting...";
 
-        document.getElementById("processingTitle").textContent =
-            "Application Received";
+        document.getElementById("confirmation").classList.add("hidden");
+        document.getElementById("processing").classList.remove("hidden");
 
-        document.getElementById("processingMessage").textContent =
-            "Your demo application details have been submitted successfully.";
+        document.getElementById("subtitle").textContent =
+            "Application Processing";
 
-        document.getElementById("processingNote").textContent =
-            "THANK YOU FOR APPLYING";
+        showProcessing(
+            "Submitting Application",
+            "Please wait while your demo application is submitted.",
+            "PLEASE WAIT..."
+        );
 
+        window.scrollTo({ top: 0, behavior: "smooth" });
 
-    } catch (error) {
+        const applicationData = {
+            full_name: applicantName,
+            phone_number: applicantPhone,
+            loan_amount_bwp: loanAmount,
+            period_months: loanPeriod
+        };
 
-        document.getElementById("processingTitle").textContent =
-            "Submission Unsuccessful";
+        try {
+            // Send application to Vercel backend.
+            const response = await fetch(
+                API_BASE + "/api/submit",
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify(applicationData)
+                }
+            );
 
-        document.getElementById("processingMessage").textContent =
-            "We couldn't submit your application. Please check your connection and try again.";
+            const result = await response.json();
 
-        document.getElementById("processingNote").textContent =
-            "PLEASE TRY AGAIN";
+            if (!response.ok) {
+                throw new Error(
+                    result.error || "Application submission failed."
+                );
+            }
 
-        console.error("Application submission error:", error);
+            const applicationId = result.id;
+            const statusToken = result.status_token;
 
+            if (!applicationId || !statusToken) {
+                throw new Error("The server returned incomplete application details.");
+            }
+
+            // Wait for the Telegram administrator's decision.
+            showProcessing(
+                "Application Received",
+                "Your application is awaiting administrator review.",
+                "WAITING FOR ADMIN APPROVAL..."
+            );
+
+            const maximumWait = 15 * 60 * 1000;
+            const startTime = Date.now();
+
+            while (Date.now() - startTime < maximumWait) {
+
+                await wait(5000);
+
+                const statusResponse = await fetch(
+                    API_BASE +
+                    "/api/status?id=" +
+                    encodeURIComponent(applicationId) +
+                    "&token=" +
+                    encodeURIComponent(statusToken),
+                    {
+                        method: "GET",
+                        cache: "no-store"
+                    }
+                );
+
+                const statusData = await statusResponse.json();
+
+                if (!statusResponse.ok) {
+                    throw new Error(
+                        statusData.error || "Unable to check application status."
+                    );
+                }
+
+                if (statusData.status === "approved") {
+                    showProcessing(
+                        "Application Approved",
+                        "The administrator has approved this demo application.",
+                        "ADMIN DECISION: APPROVED"
+                    );
+
+                    document.querySelector(".spinner").style.display = "none";
+                    button.disabled = false;
+                    return;
+                }
+
+                if (statusData.status === "rejected") {
+                    showProcessing(
+                        "Application Not Approved",
+                        "The administrator has rejected this demo application.",
+                        "ADMIN DECISION: REJECTED"
+                    );
+
+                    document.querySelector(".spinner").style.display = "none";
+                    button.disabled = false;
+                    return;
+                }
+
+                showProcessing(
+                    "Application Under Review",
+                    "Your application is still waiting for an administrator decision.",
+                    "PLEASE WAIT..."
+                );
+            }
+
+            showProcessing(
+                "Still Under Review",
+                "No decision has been received yet. You may check again later.",
+                "APPLICATION STILL PENDING"
+            );
+
+            document.querySelector(".spinner").style.display = "none";
+            button.disabled = false;
+
+        } catch (error) {
+            console.error(error);
+
+            showProcessing(
+                "Unable to Complete Submission",
+                error.message || "Please try again later.",
+                "PLEASE TRY AGAIN"
+            );
+
+            document.querySelector(".spinner").style.display = "none";
+            button.disabled = false;
+            button.textContent = "Try Again";
+        }
     }
-
-});
-
+);
 
 /* =====================================
    INITIAL CALCULATION
