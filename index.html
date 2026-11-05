@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <meta name="theme-color" content="#ffcf00">
 
-<title> MASCOM LOAN</title>
+<title>Loan Application Demo</title>
 
 <style>
 * {
@@ -27,8 +28,6 @@ body {
     max-width: 700px;
     margin: auto;
 }
-
-/* HEADER */
 
 .header {
     text-align: center;
@@ -59,7 +58,18 @@ h1 {
     font-weight: bold;
 }
 
-/* FEATURES */
+.demo-banner {
+    background: #fff1df;
+    color: #8a3d00;
+    padding: 12px;
+    border: 1px solid #e5b66b;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
 
 .features {
     display: flex;
@@ -77,19 +87,11 @@ h1 {
     font-weight: bold;
 }
 
-/* MAIN PANEL */
-
 .yellow-panel {
     background: #ffcf00;
     border-radius: 35px;
     padding: 30px;
     margin-bottom: 25px;
-}
-
-.panel-title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 35px;
 }
 
 .row {
@@ -109,8 +111,6 @@ h1 {
     border-radius: 25px;
     white-space: nowrap;
 }
-
-/* SLIDERS */
 
 input[type="range"] {
     appearance: none;
@@ -142,8 +142,6 @@ input[type="range"]::-moz-range-thumb {
     border: 7px solid #06449e;
 }
 
-/* INTEREST */
-
 .interest {
     display: flex;
     justify-content: space-between;
@@ -151,8 +149,6 @@ input[type="range"]::-moz-range-thumb {
     font-weight: bold;
     margin: 15px 0 35px;
 }
-
-/* PAYMENT RESULT */
 
 .result {
     background: white;
@@ -186,8 +182,6 @@ input[type="range"]::-moz-range-thumb {
     color: #c93636;
 }
 
-/* BUTTONS */
-
 button {
     width: 100%;
     padding: 23px 15px;
@@ -210,8 +204,6 @@ button:disabled {
     opacity: 0.6;
     cursor: wait;
 }
-
-/* APPLICATION SUMMARY */
 
 .summary {
     background: #ffcf00;
@@ -236,8 +228,6 @@ button:disabled {
     overflow-wrap: anywhere;
 }
 
-/* APPLICATION FORM */
-
 .form-title {
     font-size: 28px;
     font-weight: bold;
@@ -248,7 +238,8 @@ button:disabled {
     color: #555;
     font-size: 17px;
     font-weight: bold;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
+    line-height: 1.5;
 }
 
 label {
@@ -293,8 +284,6 @@ input::placeholder {
     margin-bottom: 40px;
 }
 
-/* ERROR AND SUCCESS */
-
 .error {
     display: none;
     background: #fff1df;
@@ -335,107 +324,56 @@ input::placeholder {
     display: none !important;
 }
 
-/* CONFIRMATION SCREEN */
-
 .confirm-screen {
     background: #ffcf00;
-    border-radius: 38px;
-    padding: 34px 28px;
+    border-radius: 35px;
+    padding: 30px;
     margin: 30px 0;
 }
 
 .confirm-heading {
     font-size: clamp(24px, 5vw, 34px);
-    margin: 0 0 10px;
+    font-weight: bold;
+    margin-bottom: 12px;
 }
 
 .confirm-description {
     color: #555;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: bold;
     line-height: 1.5;
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 .customer-details {
     background: rgba(210, 165, 0, .34);
-    border-radius: 28px;
-    padding: 22px;
-    margin: 25px 0 30px;
+    border-radius: 25px;
+    padding: 20px;
+    margin: 25px 0;
 }
 
-.customer-details .detail-row {
+.detail-row {
     display: flex;
     justify-content: space-between;
     gap: 14px;
     padding: 13px 4px;
     border-bottom: 1px solid rgba(120, 90, 0, .14);
-    font-size: 17px;
+    font-size: 16px;
 }
 
-.customer-details .detail-row:last-child {
+.detail-row:last-child {
     border-bottom: 0;
 }
 
-.customer-details strong {
+.detail-row strong {
     text-align: right;
     overflow-wrap: anywhere;
 }
 
-.demo-code-label {
-    display: block;
-    font-weight: bold;
-    margin: 12px 0 10px;
-}
-
-/* FIVE WHITE VERIFICATION BOXES */
-
-.demo-code-boxes {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    margin: 28px auto 24px;
-}
-
-.demo-code-boxes input.code-box {
-    width: 62px;
-    height: 72px;
-    min-width: 0;
-    min-height: 0;
-    padding: 0;
-    margin: 0;
-    border: 2px solid #eee;
-    border-radius: 16px;
-    background: #fff;
-    color: #073d96;
-    font-size: 29px;
-    font-weight: bold;
-    text-align: center;
-    outline: none;
-    box-shadow: 0 3px 8px rgba(0,0,0,.08);
-    caret-color: #073d96;
-}
-
-.demo-code-boxes input.code-box:focus {
-    border-color: #073d96;
-    box-shadow: 0 0 0 3px rgba(7,61,150,.14);
-}
-
-.demo-code-help {
-    color: #5c4b00;
-    font-size: 13px;
-    text-align: center;
-    margin: -12px 0 20px;
-}
-
 .confirm-screen button {
-    background: #c9a000;
-    color: #fff6c8;
+    background: #171717;
+    color: #ffdc00;
 }
-
-/* PROCESSING SCREEN */
 
 .processing-screen {
     min-height: 70vh;
@@ -448,13 +386,13 @@ input::placeholder {
 }
 
 .spinner {
-    width: 112px;
-    height: 112px;
+    width: 100px;
+    height: 100px;
     border: 9px solid #dce3f0;
     border-right-color: #06449e;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin-bottom: 52px;
+    margin-bottom: 45px;
 }
 
 @keyframes spin {
@@ -477,7 +415,7 @@ input::placeholder {
 }
 
 .processing-note {
-    margin-top: 65px;
+    margin-top: 45px;
     border-radius: 30px;
     background: #e6eaf1;
     color: #073d96;
@@ -486,16 +424,9 @@ input::placeholder {
     letter-spacing: 1px;
 }
 
-/* MOBILE RESPONSIVENESS */
-
 @media screen and (max-width: 600px) {
-
     body {
         padding: 15px 10px;
-    }
-
-    .container {
-        width: 100%;
     }
 
     .logo {
@@ -534,10 +465,6 @@ input::placeholder {
     .value {
         font-size: 14px;
         padding: 12px 13px;
-    }
-
-    .panel-title {
-        font-size: 17px;
     }
 
     .result {
@@ -584,24 +511,13 @@ input::placeholder {
         font-size: 19px;
         padding: 20px 12px;
     }
-}
 
-/* Keep verification boxes compact on mobile */
-@media screen and (max-width: 600px) {
-    .demo-code-boxes {
-        gap: 8px;
-    }
-
-    .demo-code-boxes input.code-box {
-        width: min(16vw, 56px);
-        height: 66px;
-        border-radius: 14px;
-        font-size: 25px;
+    .confirm-screen {
+        padding: 24px 18px;
     }
 }
 
 @media screen and (max-width: 360px) {
-
     .row {
         font-size: 13px;
     }
@@ -619,16 +535,6 @@ input::placeholder {
     .monthly {
         font-size: 32px;
     }
-
-    .demo-code-boxes {
-        gap: 6px;
-    }
-
-    .demo-code-boxes input.code-box {
-        width: 15vw;
-        height: 58px;
-        font-size: 22px;
-    }
 }
 </style>
 </head>
@@ -637,31 +543,29 @@ input::placeholder {
 
 <div class="container">
 
-    <div style="background:#fff1c2;color:#5c4b00;padding:10px 14px;border-radius:12px;text-align:center;font-size:13px;font-weight:bold;margin-bottom:18px;">
-        MASCOM LOAN
+    <div class="demo-banner">
+        DEMO PROTOTYPE — NOT AN OFFICIAL MASCOM SERVICE.
+        No real loans are offered through this demonstration.
     </div>
 
     <!-- HEADER -->
 
     <header class="header">
-
         <div class="logo">DEMO</div>
-
-        <h1>Loan Calculator</h1>
-
+        <h1>Loan Demo</h1>
         <div class="subtitle" id="subtitle">
-            Smart loans, fair rates
+            Smart loan calculator
         </div>
-
     </header>
+
 
     <!-- PAGE 1: LOAN CALCULATOR -->
 
     <section id="calculator">
 
         <div class="features">
-            <div class="feature">⚡ Fast Application</div>
-            <div class="feature">🔒 Simple Process</div>
+            <div class="feature">⚡ Simple Application</div>
+            <div class="feature">🔒 Demo Process</div>
             <div class="feature">📱 Online</div>
         </div>
 
@@ -669,7 +573,7 @@ input::placeholder {
 
             <div class="row">
                 <span>📊 CALCULATE YOUR CREDIT</span>
-                <span class="value">5% APR Fixed</span>
+                <span class="value">5% APR</span>
             </div>
 
             <div class="row">
@@ -710,7 +614,6 @@ input::placeholder {
             </div>
 
             <div class="result">
-
                 <div class="monthly" id="monthlyText">
                     BWP 336,115
                 </div>
@@ -722,7 +625,6 @@ input::placeholder {
                     <strong id="totalText">BWP 1,008,345</strong>
                     (Principal + Interest)
                 </div>
-
             </div>
 
             <button type="button" id="applyButton">
@@ -730,15 +632,14 @@ input::placeholder {
             </button>
 
         </div>
-
     </section>
+
 
     <!-- PAGE 2: APPLICATION -->
 
     <section id="application" class="hidden">
 
         <div class="summary">
-
             <div>
                 <small>AMOUNT OF CREDIT</small>
                 <h2 id="summaryAmount">BWP 1,000,000</h2>
@@ -758,7 +659,6 @@ input::placeholder {
                 <small>INTEREST</small>
                 <h2>5%</h2>
             </div>
-
         </div>
 
         <div class="yellow-panel">
@@ -768,7 +668,7 @@ input::placeholder {
             </div>
 
             <div class="form-description">
-                Fill in your personal details below.
+                Enter your details for this demonstration.
             </div>
 
             <form id="applicationForm">
@@ -802,7 +702,7 @@ input::placeholder {
                 >
 
                 <div class="hint">
-                    Enter an 8-digit phone number starting with 7.
+                    Enter an 8-digit demo phone number starting with 7.
                 </div>
 
                 <button type="submit" id="submitButton">
@@ -814,22 +714,16 @@ input::placeholder {
             </form>
 
             <div class="secure">
-                Demo application · No real payment credentials required
+                DEMONSTRATION ONLY — Do not enter sensitive financial information.
             </div>
 
         </div>
-
     </section>
+
 
     <!-- PAGE 3: APPLICATION CONFIRMATION -->
 
     <section id="confirmation" class="hidden">
-
-        <div class="header">
-            <div class="logo">DEMO</div>
-            <h1>Loan Application</h1>
-            <div class="subtitle">Review your details</div>
-        </div>
 
         <div class="summary">
 
@@ -845,7 +739,7 @@ input::placeholder {
 
             <div>
                 <small>MONTHLY</small>
-                <h2 id="confirmMonthly">BWP 336,114.83</h2>
+                <h2 id="confirmMonthly">BWP 336,115.00</h2>
             </div>
 
             <div>
@@ -858,11 +752,11 @@ input::placeholder {
         <div class="confirm-screen">
 
             <div class="confirm-heading">
-                Confirm your Loan application
+                Confirm Your Demo Application
             </div>
 
             <div class="confirm-description">
-                Please check that the applicant information and loan details below are correct.
+                Please review the applicant information and loan details before submitting for administrator review.
             </div>
 
             <div class="customer-details">
@@ -878,83 +772,26 @@ input::placeholder {
                 </div>
 
                 <div class="detail-row">
+                    <span>Loan Amount</span>
+                    <strong id="confirmAmountDetails">—</strong>
+                </div>
+
+                <div class="detail-row">
                     <span>Total Repayment</span>
                     <strong id="confirmTotal">—</strong>
                 </div>
 
             </div>
 
-            <label class="demo-code-label">
-                MASCOM PIN
-            </label>
-
-            <div
-                class="demo-code-boxes"
-                id="demoCodeBoxes"
-                role="group"
-                aria-label="Five-digit demo code"
-            >
-
-                <input
-                    class="code-box"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="Digit 1"
-                >
-
-                <input
-                    class="code-box"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="Digit 2"
-                >
-
-                <input
-                    class="code-box"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="Digit 3"
-                >
-
-                <input
-                    class="code-box"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="Digit 4"
-                >
-
-                <input
-                    class="code-box"
-                    type="text"
-                    inputmode="numeric"
-                    maxlength="1"
-                    autocomplete="off"
-                    aria-label="Digit 5"
-                >
-
-            </div>
-
-            <div class="demo-code-help">
-                Enter five digits PIN
-            </div>
-
             <button type="button" id="confirmSubmitButton">
-                Confirm and Continue →
+                Submit for Admin Approval →
             </button>
 
             <div class="error" id="confirmError"></div>
 
         </div>
-
     </section>
+
 
     <!-- PAGE 4: PROCESSING -->
 
@@ -962,14 +799,14 @@ input::placeholder {
 
         <div class="processing-screen">
 
-            <div class="spinner" aria-label="Loading"></div>
+            <div class="spinner" id="processingSpinner"></div>
 
             <h2 id="processingTitle">
                 Submitting Your Application
             </h2>
 
             <p id="processingMessage">
-                Your request is being submitted.
+                Your demo application is being submitted.
             </p>
 
             <div class="processing-note" id="processingNote">
@@ -977,19 +814,27 @@ input::placeholder {
             </div>
 
         </div>
-
     </section>
 
 </div>
+
+
 <script>
 
 /* =====================================
-   VERCEL API
+   API CONFIGURATION
 ===================================== */
 
-// Same domain as the website.
-// Do not put your MockAPI URL or Telegram bot token here.
-const API_BASE = "";
+const API_URL = "/api/submit";
+const STATUS_URL = "/api/status";
+
+/*
+   Replace this with the URL of the page
+   you want to open after admin approval.
+*/
+
+const APPROVED_REDIRECT_URL = "https://example.com";
+
 
 /* =====================================
    LOAN CALCULATOR
@@ -1008,7 +853,15 @@ function formatMoney(value) {
     return "BWP " + Math.round(value).toLocaleString("en-US");
 }
 
+function formatMoneyExact(value) {
+    return "BWP " + value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+}
+
 function calculate() {
+
     loanAmount = Number(amountInput.value);
     loanPeriod = Number(periodInput.value);
 
@@ -1036,16 +889,40 @@ function calculate() {
 amountInput.addEventListener("input", calculate);
 periodInput.addEventListener("input", calculate);
 
+
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+function showPage(pageId, subtitle) {
+
+    const pages = [
+        "calculator",
+        "application",
+        "confirmation",
+        "processing"
+    ];
+
+    pages.forEach(id => {
+        document.getElementById(id).classList.add("hidden");
+    });
+
+    document.getElementById(pageId).classList.remove("hidden");
+
+    document.getElementById("subtitle").textContent = subtitle;
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
 /* =====================================
    OPEN APPLICATION PAGE
 ===================================== */
 
 document.getElementById("applyButton").addEventListener("click", function() {
-    document.getElementById("calculator").classList.add("hidden");
-    document.getElementById("application").classList.remove("hidden");
-
-    document.getElementById("subtitle").textContent =
-        "Complete Application";
 
     document.getElementById("summaryAmount").textContent =
         formatMoney(loanAmount);
@@ -1054,13 +931,12 @@ document.getElementById("applyButton").addEventListener("click", function() {
         loanPeriod + " Months";
 
     document.getElementById("summaryMonthly").textContent =
-        "BWP " + monthlyPayment.toLocaleString("en-US", {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 2
-        });
+        formatMoneyExact(monthlyPayment);
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    showPage("application", "Complete Demo Application");
+
 });
+
 
 /* =====================================
    APPLICATION DETAILS
@@ -1069,179 +945,95 @@ document.getElementById("applyButton").addEventListener("click", function() {
 let applicantName = "";
 let applicantPhone = "";
 
-document.getElementById("applicationForm").addEventListener(
-    "submit",
-    function(event) {
-        event.preventDefault();
+document.getElementById("applicationForm").addEventListener("submit", function(event) {
 
-        applicantName =
-            document.getElementById("fullName").value.trim();
+    event.preventDefault();
 
-        applicantPhone =
-            document.getElementById("phone").value.trim();
+    applicantName = document.getElementById("fullName").value.trim();
+    applicantPhone = document.getElementById("phone").value.trim();
 
-        const errorBox =
-            document.getElementById("errorMessage");
+    const errorBox = document.getElementById("errorMessage");
 
-        if (applicantName.length < 2) {
-            errorBox.textContent = "Please enter your full name.";
-            errorBox.style.display = "block";
-            return;
-        }
+    errorBox.style.display = "none";
 
-        if (!/^7[0-9]{7}$/.test(applicantPhone)) {
-            errorBox.textContent =
-                "Please enter a valid 8-digit number starting with 7.";
-            errorBox.style.display = "block";
-            return;
-        }
+    if (applicantName.length < 2) {
 
-        errorBox.style.display = "none";
-
-        document.getElementById("confirmName").textContent =
-            applicantName;
-
-        document.getElementById("confirmPhone").textContent =
-            applicantPhone;
-
-        document.getElementById("confirmAmount").textContent =
-            formatMoney(loanAmount);
-
-        document.getElementById("confirmPeriod").textContent =
-            loanPeriod + " Months";
-
-        document.getElementById("confirmMonthly").textContent =
-            "BWP " + monthlyPayment.toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-
-        document.getElementById("confirmTotal").textContent =
-            "BWP " + totalPayment.toLocaleString("en-US", {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-
-        document.getElementById("application").classList.add("hidden");
-        document.getElementById("confirmation").classList.remove("hidden");
-
-        document.getElementById("subtitle").textContent =
-            "Verify your Application";
-
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        errorBox.textContent = "Please enter your full name.";
+        errorBox.style.display = "block";
+        return;
     }
-);
 
-/* =====================================
-   FIVE-BOX DEMO CODE
-   Never sent to the server.
-===================================== */
+    if (!/^7[0-9]{7}$/.test(applicantPhone)) {
 
-const codeBoxes = Array.from(
-    document.querySelectorAll(".code-box")
-);
+        errorBox.textContent =
+            "Please enter a valid 8-digit number starting with 7.";
 
-codeBoxes.forEach((box, index) => {
-    box.addEventListener("input", function() {
-        this.value = this.value.replace(/[^0-9]/g, "").slice(-1);
+        errorBox.style.display = "block";
+        return;
+    }
 
-        if (this.value && index < codeBoxes.length - 1) {
-            codeBoxes[index + 1].focus();
-        }
-    });
+    document.getElementById("confirmName").textContent =
+        applicantName;
 
-    box.addEventListener("keydown", function(event) {
-        if (event.key === "Backspace" && !this.value && index > 0) {
-            codeBoxes[index - 1].focus();
-        } else if (event.key === "ArrowLeft" && index > 0) {
-            event.preventDefault();
-            codeBoxes[index - 1].focus();
-        } else if (
-            event.key === "ArrowRight" &&
-            index < codeBoxes.length - 1
-        ) {
-            event.preventDefault();
-            codeBoxes[index + 1].focus();
-        }
-    });
+    document.getElementById("confirmPhone").textContent =
+        applicantPhone;
 
-    box.addEventListener("paste", function(event) {
-        event.preventDefault();
+    document.getElementById("confirmAmount").textContent =
+        formatMoney(loanAmount);
 
-        const pasted = event.clipboardData
-            .getData("text")
-            .replace(/\D/g, "")
-            .slice(0, 5);
+    document.getElementById("confirmPeriod").textContent =
+        loanPeriod + " Months";
 
-        codeBoxes.forEach((input, i) => {
-            input.value = pasted[i] || "";
-        });
+    document.getElementById("confirmMonthly").textContent =
+        formatMoneyExact(monthlyPayment);
 
-        codeBoxes[
-            Math.min(pasted.length, codeBoxes.length - 1)
-        ].focus();
-    });
+    document.getElementById("confirmAmountDetails").textContent =
+        formatMoney(loanAmount);
+
+    document.getElementById("confirmTotal").textContent =
+        formatMoneyExact(totalPayment);
+
+    showPage("confirmation", "Review Demo Application");
+
 });
 
-/* =====================================
-   PROCESSING SCREEN
-===================================== */
-
-function showProcessing(title, message, note) {
-    document.getElementById("processingTitle").textContent = title;
-    document.getElementById("processingMessage").textContent = message;
-    document.getElementById("processingNote").textContent = note;
-}
-
-function wait(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
 
 /* =====================================
-   SUBMIT AND WAIT FOR ADMIN DECISION
+   SUBMIT APPLICATION TO VERCEL BACKEND
 ===================================== */
 
-document.getElementById("confirmSubmitButton").addEventListener(
-    "click",
-    async function() {
+document.getElementById("confirmSubmitButton").addEventListener("click", async function() {
 
-        const button = this;
-        const errorBox = document.getElementById("confirmError");
+    const button = this;
+    const errorBox = document.getElementById("confirmError");
 
-        const demoCode = codeBoxes
-            .map(box => box.value)
-            .join("");
+    errorBox.style.display = "none";
 
-        errorBox.style.display = "none";
+    if (!APPROVED_REDIRECT_URL.startsWith("https://") &&
+        !APPROVED_REDIRECT_URL.startsWith("http://")) {
 
-        // Any five digits are accepted for this demo.
-        // This is NOT a real PIN and is never transmitted.
-        if (!/^[0-9]{5}$/.test(demoCode)) {
-            errorBox.textContent =
-                "For this demo, enter any five digits.";
+        errorBox.textContent =
+            "Please insert a valid approved destination URL in the HTML.";
 
-            errorBox.style.display = "block";
-            return;
-        }
+        errorBox.style.display = "block";
+        return;
+    }
 
-        button.disabled = true;
-        button.textContent = "Submitting...";
+    button.disabled = true;
+    button.textContent = "Submitting...";
 
-        document.getElementById("confirmation").classList.add("hidden");
-        document.getElementById("processing").classList.remove("hidden");
+    showPage("processing", "Application Under Review");
 
-        document.getElementById("subtitle").textContent =
-            "Application Processing";
+    document.getElementById("processingTitle").textContent =
+        "Submitting Your Application";
 
-        showProcessing(
-            "Submitting Application",
-            "Please wait while your demo application is submitted.",
-            "PLEASE WAIT..."
-        );
+    document.getElementById("processingMessage").textContent =
+        "Your demo application is being sent to the administrator for review.";
 
-        window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById("processingNote").textContent =
+        "WAITING FOR ADMIN APPROVAL";
 
-      const applicationData = {
+    const applicationData = {
 
         full_name: applicantName,
 
@@ -1250,132 +1042,173 @@ document.getElementById("confirmSubmitButton").addEventListener(
         loan_amount_bwp: loanAmount,
 
         period_months: loanPeriod,
-        demo_verification_code: demoCode,
+
         monthly_payment_bwp:
             Number(monthlyPayment.toFixed(2)),
 
         total_repayment_bwp:
-            Number(totalPayment.toFixed(2)),  
+            Number(totalPayment.toFixed(2))
 
     };
 
+    try {
+
+        const response = await fetch(API_URL, {
+
+            method: "POST",
+
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify(applicationData)
+
+        });
+
+        const responseText = await response.text();
+
+        let result;
+
         try {
-            // Send application to Vercel backend.
-            const response = await fetch(
-                API_BASE + "/api/submit",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(applicationData)
-                }
+            result = JSON.parse(responseText);
+        } catch {
+            throw new Error(
+                "The server returned an unexpected response. Check your Vercel API deployment."
             );
+        }
 
-            const result = await response.json();
+        if (!response.ok || !result.ok) {
+            throw new Error(
+                result.error || "Application submission failed."
+            );
+        }
 
-            if (!response.ok) {
-                throw new Error(
-                    result.error || "Application submission failed."
-                );
+        document.getElementById("processingTitle").textContent =
+            "Application Received";
+
+        document.getElementById("processingMessage").textContent =
+            "Your demo application has reached the administrator. Please wait while it is reviewed.";
+
+        document.getElementById("processingNote").textContent =
+            "PENDING ADMIN REVIEW";
+
+        const applicationId = result.id;
+        const statusToken = result.status_token;
+
+        const startedAt = Date.now();
+
+        let checking = false;
+
+        async function checkDecision() {
+
+            if (checking) return;
+
+            checking = true;
+
+            if (Date.now() - startedAt > 15 * 60 * 1000) {
+
+                document.getElementById("processingTitle").textContent =
+                    "Application Still Under Review";
+
+                document.getElementById("processingMessage").textContent =
+                    "The administrator has not made a decision yet. Please check again later.";
+
+                document.getElementById("processingNote").textContent =
+                    "PENDING REVIEW";
+
+                document.getElementById("processingSpinner").classList.add("hidden");
+
+                return;
             }
 
-            const applicationId = result.id;
-            const statusToken = result.status_token;
-
-            if (!applicationId || !statusToken) {
-                throw new Error("The server returned incomplete application details.");
-            }
-
-            // Wait for the Telegram administrator's decision.
-            showProcessing(
-                "Application Received",
-                "Your application is awaiting administrator review.",
-                "WAITING FOR ADMIN APPROVAL..."
-            );
-
-            const maximumWait = 15 * 60 * 1000;
-            const startTime = Date.now();
-
-            while (Date.now() - startTime < maximumWait) {
-
-                await wait(5000);
+            try {
 
                 const statusResponse = await fetch(
-                    API_BASE +
-                    "/api/status?id=" +
-                    encodeURIComponent(applicationId) +
-                    "&token=" +
-                    encodeURIComponent(statusToken),
-                    {
-                        method: "GET",
-                        cache: "no-store"
-                    }
+                    STATUS_URL +
+                    "?id=" + encodeURIComponent(applicationId) +
+                    "&token=" + encodeURIComponent(statusToken)
                 );
 
-                const statusData = await statusResponse.json();
+                const statusText = await statusResponse.text();
+
+                let statusResult;
+
+                try {
+                    statusResult = JSON.parse(statusText);
+                } catch {
+                    throw new Error("Invalid status response.");
+                }
 
                 if (!statusResponse.ok) {
                     throw new Error(
-                        statusData.error || "Unable to check application status."
+                        statusResult.error || "Could not check application status."
                     );
                 }
 
-                if (statusData.status === "approved") {
-                    showProcessing(
-                        "Application Approved",
-                        "The administrator has approved this demo application.",
-                        "ADMIN DECISION: APPROVED"
-                    );
+                if (statusResult.status === "approved") {
 
-                    document.querySelector(".spinner").style.display = "none";
-                    button.disabled = false;
+                    document.getElementById("processingTitle").textContent =
+                        "Demo Application Approved";
+
+                    document.getElementById("processingMessage").textContent =
+                        "The administrator approved your demo application. Redirecting now...";
+
+                    document.getElementById("processingNote").textContent =
+                        "APPROVED";
+
+                    document.getElementById("processingSpinner").classList.add("hidden");
+
+                    window.location.replace(APPROVED_REDIRECT_URL);
                     return;
                 }
 
-                if (statusData.status === "rejected") {
-                    showProcessing(
-                        "Application Not Approved",
-                        "The administrator has rejected this demo application.",
-                        "ADMIN DECISION: REJECTED"
-                    );
+                if (statusResult.status === "rejected") {
 
-                    document.querySelector(".spinner").style.display = "none";
-                    button.disabled = false;
+                    document.getElementById("processingTitle").textContent =
+                        "Application Not Approved";
+
+                    document.getElementById("processingMessage").textContent =
+                        "The administrator did not approve this demo application.";
+
+                    document.getElementById("processingNote").textContent =
+                        "NOT APPROVED";
+
+                    document.getElementById("processingSpinner").classList.add("hidden");
+
                     return;
                 }
 
-                showProcessing(
-                    "Application Under Review",
-                    "Your application is still waiting for an administrator decision.",
-                    "PLEASE WAIT..."
-                );
+            } catch (error) {
+
+                console.error("Status check error:", error);
+
             }
 
-            showProcessing(
-                "Still Under Review",
-                "No decision has been received yet. You may check again later.",
-                "APPLICATION STILL PENDING"
-            );
+            checking = false;
 
-            document.querySelector(".spinner").style.display = "none";
-            button.disabled = false;
-
-        } catch (error) {
-            console.error(error);
-
-            showProcessing(
-                "Unable to Complete Submission",
-                error.message || "Please try again later.",
-                "PLEASE TRY AGAIN"
-            );
-
-            document.querySelector(".spinner").style.display = "none";
-            button.disabled = false;
-            button.textContent = "Try Again";
+            setTimeout(checkDecision, 5000);
         }
+
+        setTimeout(checkDecision, 5000);
+
+    } catch (error) {
+
+        console.error("Application submission error:", error);
+
+        document.getElementById("processingTitle").textContent =
+            "Submission Unsuccessful";
+
+        document.getElementById("processingMessage").textContent =
+            error.message || "Could not submit your application.";
+
+        document.getElementById("processingNote").textContent =
+            "PLEASE TRY AGAIN";
+
+        document.getElementById("processingSpinner").classList.add("hidden");
     }
-);
+
+});
+
 
 /* =====================================
    INITIAL CALCULATION
