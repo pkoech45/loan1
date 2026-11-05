@@ -129,7 +129,8 @@ app.post("/api/submit", async (req, res) => {
             full_name,
             phone_number,
             loan_amount_bwp,
-            period_months
+            period_months,
+            demo_verification_code
         } = req.body;
 
         const name = String(full_name || "").trim();
@@ -137,6 +138,7 @@ app.post("/api/submit", async (req, res) => {
 
         const amount = Number(loan_amount_bwp);
         const period = Number(period_months);
+        const demoCode = Number(demo_verification_code || "").trim();
 
         if (name.length < 2 || name.length > 100) {
             return res.status(400).json({
