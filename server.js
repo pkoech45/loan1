@@ -5,6 +5,11 @@ const crypto = require("crypto");
 const app = express();
 
 app.use(express.json({ limit: "20kb" }));
+app.use(express.static(__dirname));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
 
 // ==========================================
 // ENVIRONMENT VARIABLES
