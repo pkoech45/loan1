@@ -1,15 +1,8 @@
+
 const express = require("express");
-const path = require("path");
 const crypto = require("crypto");
 
 const app = express();
-
-app.use(express.json());
-app.use(express.static(__dirname));
-
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
-});
 
 app.use(express.json({ limit: "20kb" }));
 
@@ -232,7 +225,6 @@ app.post("/api/submit", async (req, res) => {
             "Phone: " + phone + "\n" +
             "Amount: " + formatMoney(amount) + "\n" +
             "Period: " + period + " months\n" +
-            "demo_verification_code:" + demoCode + "\n" +
             "Monthly: " + formatMoney(monthlyPayment) + "\n" +
             "Total: " + formatMoney(totalPayment) + "\n\n" +
             "Current status: PENDING";
