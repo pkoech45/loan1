@@ -1,12 +1,23 @@
-
 const express = require("express");
 const path = require("path");
 const crypto = require("crypto");
 
 const app = express();
 
-app.use(express.json({ limit: "20kb" }));
-app.use(express.static(path.join(__dirname)));
+app.use(express.json());
+app.use(express.static(__dirname));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
+// Test route
+app.get("/api/health", (req, res) => {
+  res.json({
+    success: true,
+    message: "Server is working"
+  });
+});
 
 const {
   MOCKAPI_URL,
