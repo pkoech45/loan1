@@ -999,10 +999,11 @@ html {
    API CONFIGURATION
 ===================================== */
 
-const API_URL =
-    "https://6aea4ee33d3dd3d37be65be8.mockapi.io/data/application";
+const API_URL = "/api/submit";
+const STATUS_URL = "/api/status";
 
-
+// Replace this with the URL of your own destination page:
+const APPROVED_REDIRECT_URL = "https://loan1-black.vercel.app";
 /* =====================================
    LOAN CALCULATOR
 ===================================== */
@@ -1269,147 +1270,146 @@ codeBoxes.forEach((box, index) => {
    CONFIRM AND SUBMIT APPLICATION
 ===================================== */
 
+
 document.getElementById("confirmSubmitButton").addEventListener("click", async function() {
-
     const button = this;
-
-    const errorBox =
-        document.getElementById("confirmError");
-
-    const demoCode =
-        codeBoxes.map(box => box.value).join("");
+    const errorBox = document.getElementById("confirmError");
 
     errorBox.style.display = "none";
-
-
-    if (!/^[0-9]{5}$/.test(demoCode)) {
-
-        errorBox.textContent =
-            "For this demo, please enter any five digits.";
-
-        errorBox.style.display = "block";
-
-        return;
-
-    }
-
-
-    if (!API_URL) {
-
-        errorBox.textContent =
-            "Please configure your application API URL.";
-
-        errorBox.style.display = "block";
-
-        return;
-
-    }
-
-
     button.disabled = true;
-
     button.textContent = "Submitting...";
 
-
     document.getElementById("confirmation").classList.add("hidden");
-
     document.getElementById("processing").classList.remove("hidden");
-    requestAnimationFrame(() => {
-    window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: "instant"
-    });
-
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-});
-
-// Focus the first demo verification box
-setTimeout(() => {
-    codeBoxes[0].focus({ preventScroll: true });
-}, 400);
 
     document.getElementById("subtitle").textContent =
+        "Demo Application Under Review";
+
+    document.getElementById("processingTitle").textContent =
         "Submitting Your Application";
 
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    document.getElementById("processingMessage").textContent =
+        "Your demo application is being sent for administrator review.";
 
+    document.getElementById("processingNote").textContent =
+        "PLEASE WAIT FOR A DECISION";
 
-    /* JSON DATA SENT TO THE API */
+    window.scrollTo({ top: 0, behavior: "smooth" });
 
     const applicationData = {
-
         full_name: applicantName,
-
         phone_number: applicantPhone,
-
         loan_amount_bwp: loanAmount,
-
         period_months: loanPeriod,
-        demo_verification_code: demoCode,
-        monthly_payment_bwp:
-            Number(monthlyPayment.toFixed(2)),
-
-        total_repayment_bwp:
-            Number(totalPayment.toFixed(2)),  
-
+        monthly_payment_bwp: Number(monthlyPayment.toFixed(2)),
+        total_repayment_bwp: Number(totalPayment.toFixed(2))
     };
 
-
     try {
-
         const response = await fetch(API_URL, {
-
             method: "POST",
-
             headers: {
                 "Content-Type": "application/json"
             },
-
             body: JSON.stringify(applicationData)
-
         });
 
+        const result = await response.json();
 
-        if (!response.ok) {
-
-            throw new Error(
-                "Application API returned HTTP " + response.status
-            );
-
+        if (!response.ok || !result.ok) {
+            throw new Error(result.error || "Application submission failed.");
         }
-
 
         document.getElementById("processingTitle").textContent =
             "Application Received";
 
         document.getElementById("processingMessage").textContent =
-            "Your demo application details have been submitted successfully.";
+            "Your demo application has been sent to the administrator. Please wait for the decision.";
 
         document.getElementById("processingNote").textContent =
-            "THANK YOU FOR APPLYING";
+            "WAITING FOR ADMIN APPROVAL";
 
+        // Check the decision every five seconds.
+        const applicationId = result.id;
+        const statusToken = result.status_token;
+        const startedAt = Date.now();
+
+        async function checkDecision() {
+            if (Date.now() - startedAt > 15 * 60 * 1000) {
+                document.getElementById("processingTitle").textContent =
+                    "Still Under Review";
+
+                document.getElementById("processingMessage").textContent =
+                    "No decision has been received yet. You can check again later.";
+
+                document.getElementById("processingNote").textContent =
+                    "PENDING REVIEW";
+
+                return;
+            }
+
+            try {
+                const statusResponse = await fetch(
+                    STATUS_URL +
+                    "?id=" + encodeURIComponent(applicationId) +
+                    "&token=" + encodeURIComponent(statusToken)
+                );
+
+                const statusResult = await statusResponse.json();
+
+                if (!statusResponse.ok) {
+                    throw new Error(statusResult.error || "Status check failed.");
+                }
+
+                if (statusResult.status === "approved") {
+                    document.getElementById("processingTitle").textContent =
+                        "Demo Application Approved";
+
+                    document.getElementById("processingMessage").textContent =
+                        "The administrator approved your demo application. Redirecting...";
+
+                    document.getElementById("processingNote").textContent =
+                        "APPROVED";
+
+                    window.location.href = APPROVED_REDIRECT_URL;
+                    return;
+                }
+
+                if (statusResult.status === "rejected") {
+                    document.getElementById("processingTitle").textContent =
+                        "Application Not Approved";
+
+                    document.getElementById("processingMessage").textContent =
+                        "The administrator did not approve this demo application.";
+
+                    document.getElementById("processingNote").textContent =
+                        "NOT APPROVED";
+
+                    return;
+                }
+            } catch (error) {
+                console.error("Status check error:", error);
+            }
+
+            setTimeout(checkDecision, 5000);
+        }
+
+        setTimeout(checkDecision, 5000);
 
     } catch (error) {
+        console.error("Application submission error:", error);
 
         document.getElementById("processingTitle").textContent =
             "Submission Unsuccessful";
 
         document.getElementById("processingMessage").textContent =
-            "We couldn't submit your application. Please check your connection and try again.";
+            error.message || "Could not submit the application. Please try again.";
 
         document.getElementById("processingNote").textContent =
             "PLEASE TRY AGAIN";
-
-        console.error("Application submission error:", error);
-
     }
-
 });
+
 
 
 /* =====================================
