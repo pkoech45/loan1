@@ -1271,11 +1271,30 @@ codeBoxes.forEach((box, index) => {
 ===================================== */
 
 
-document.getElementById("confirmSubmitButton").addEventListener("click", async function() {
+
+// API connections to server.js
+// Safely read JSON responses and identify Vercel error pages.
+async function readJsonResponse(response) {
+    const text = await response.text();
+
+    try {
+        return JSON.parse(text);
+    } catch {
+        throw new Error(
+            `Server returned a non-JSON response (${response.status}). ` +
+            `Check your Vercel deployment and API routes.`
+        );
+    }
+}
+
+document.getElementById("confirmSubmitButton")
+    .addEventListener("click", async function () {
+
     const button = this;
     const errorBox = document.getElementById("confirmError");
 
     errorBox.style.display = "none";
+
     button.disabled = true;
     button.textContent = "Submitting...";
 
@@ -1296,16 +1315,18 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
 
     window.scrollTo({ top: 0, behavior: "smooth" });
 
+    // Application information
     const applicationData = {
         full_name: applicantName,
         phone_number: applicantPhone,
-        loan_amount_bwp: loanAmount,
-        period_months: loanPeriod,
+        loan_amount_bwp: Number(loanAmount),
+        period_months: Number(loanPeriod),
         monthly_payment_bwp: Number(monthlyPayment.toFixed(2)),
         total_repayment_bwp: Number(totalPayment.toFixed(2))
     };
 
     try {
+        // STEP 1: Submit application to server.js
         const response = await fetch(API_URL, {
             method: "POST",
             headers: {
@@ -1314,12 +1335,15 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
             body: JSON.stringify(applicationData)
         });
 
-        const result = await response.json();
+        const result = await readJsonResponse(response);
 
-        if (!response.ok || !result.ok) {
-            throw new Error(result.error || "Application submission failed.");
+        if (!response.ok || !result.ok || !result.id || !result.status_token) {
+            throw new Error(
+                result.error || "Application submission failed."
+            );
         }
 
+        // STEP 2: Show waiting message
         document.getElementById("processingTitle").textContent =
             "Application Received";
 
@@ -1329,22 +1353,32 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
         document.getElementById("processingNote").textContent =
             "WAITING FOR ADMIN APPROVAL";
 
-        // Check the decision every five seconds.
         const applicationId = result.id;
         const statusToken = result.status_token;
-        const startedAt = Date.now();
 
+        const startedAt = Date.now();
+        const timeoutDuration = 15 * 60 * 1000;
+
+        let checking = false;
+
+        // STEP 3: Check administrator decision
         async function checkDecision() {
-            if (Date.now() - startedAt > 15 * 60 * 1000) {
+
+            if (checking) return;
+            checking = true;
+
+            if (Date.now() - startedAt > timeoutDuration) {
+
                 document.getElementById("processingTitle").textContent =
                     "Still Under Review";
 
                 document.getElementById("processingMessage").textContent =
-                    "No decision has been received yet. You can check again later.";
+                    "No decision has been received yet. Please contact the administrator if necessary.";
 
                 document.getElementById("processingNote").textContent =
                     "PENDING REVIEW";
 
+                checking = false;
                 return;
             }
 
@@ -1355,13 +1389,18 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
                     "&token=" + encodeURIComponent(statusToken)
                 );
 
-                const statusResult = await statusResponse.json();
+                const statusResult =
+                    await readJsonResponse(statusResponse);
 
                 if (!statusResponse.ok) {
-                    throw new Error(statusResult.error || "Status check failed.");
+                    throw new Error(
+                        statusResult.error || "Status check failed."
+                    );
                 }
 
+                // STEP 4: Approved
                 if (statusResult.status === "approved") {
+
                     document.getElementById("processingTitle").textContent =
                         "Demo Application Approved";
 
@@ -1371,11 +1410,25 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
                     document.getElementById("processingNote").textContent =
                         "APPROVED";
 
-                    window.location.href = APPROVED_REDIRECT_URL;
+                    if (
+                        APPROVED_REDIRECT_URL.includes(
+                            "YOUR-NEXT-PAGE-URL"
+                        )
+                    ) {
+                        document.getElementById("processingMessage").textContent =
+                            "Approval received. Please configure your destination URL.";
+
+                        checking = false;
+                        return;
+                    }
+
+                    window.location.assign(APPROVED_REDIRECT_URL);
                     return;
                 }
 
+                // STEP 5: Rejected
                 if (statusResult.status === "rejected") {
+
                     document.getElementById("processingTitle").textContent =
                         "Application Not Approved";
 
@@ -1385,28 +1438,49 @@ document.getElementById("confirmSubmitButton").addEventListener("click", async f
                     document.getElementById("processingNote").textContent =
                         "NOT APPROVED";
 
+                    checking = false;
                     return;
                 }
+
+                // Still pending
+                if (statusResult.status !== "pending") {
+                    throw new Error("Unexpected application status.");
+                }
+
             } catch (error) {
                 console.error("Status check error:", error);
             }
 
+            checking = false;
+
             setTimeout(checkDecision, 5000);
         }
 
+        // Start polling after five seconds
         setTimeout(checkDecision, 5000);
 
     } catch (error) {
+
         console.error("Application submission error:", error);
 
         document.getElementById("processingTitle").textContent =
             "Submission Unsuccessful";
 
         document.getElementById("processingMessage").textContent =
-            error.message || "Could not submit the application. Please try again.";
+            error.message ||
+            "Could not submit the application. Please try again.";
 
         document.getElementById("processingNote").textContent =
             "PLEASE TRY AGAIN";
+
+        // Return to confirmation so the user can retry.
+        document.getElementById("processing").classList.add("hidden");
+        document.getElementById("confirmation").classList.remove("hidden");
+
+        button.disabled = false;
+        button.textContent = "Submit Application";
+
+        window.scrollTo({ top: 0, behavior: "smooth" });
     }
 });
 
