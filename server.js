@@ -12,7 +12,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.get("/", (req, res) => {
     res.sendFile(path.join("index.html"));
 });
-app.get("/api/health", (req, res) => {
+app.get("/health", (req, res) => {
     res.json({
         ok: true,
         service: "loan-demo-api"
