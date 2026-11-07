@@ -1,21 +1,16 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const crypto = require("crypto");
 
-const app = express();
+const app = express(); // Initialize app FIRST
 
 app.use(express.json());
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
-});
-
-app.get("/api/health", (req, res) => {
-  res.status(200).json({
-    success: true,
-    message: "Express backend is running"
-  });
+    res.sendFile(path.join("index.html"));
 });
 
 const {
@@ -307,5 +302,11 @@ app.post("/telegram/webhook", async (req, res) => {
 app.use((req, res) => {
   res.status(404).json({ error: "Route not found", path: req.path });
 });
+if (require.main === module) {
+    const PORT = process.env.PORT || 3000;
 
+    app.listen(PORT, () => {
+        console.log(`Server running at http://localhost:${PORT}`);
+    });
+}
 module.exports = app;

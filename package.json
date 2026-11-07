@@ -4,6 +4,10 @@
   "private": true,
   "type": "commonjs",
   "dependencies": {
+    "dotenv": "^18.0.9",
     "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
   }
 }
