@@ -66,7 +66,7 @@ function money(value) {
 }
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join("public", "index.html"));
+    res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.get("/api/health", (req, res) => {
